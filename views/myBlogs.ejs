@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head.ejs') %>
+    <title>HomePage</title>
+</head>
+<body>
+     <%- include('./partials/nav.ejs') %>
+     <div class="container   mt-4 ">
+        <form action="/my-blog/search" method="get" class="d-flex flex-column  align-items-end ">
+        <div class="input-group mb-3  w-25 ">
+            <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
+            <input type="text" class="form-control " placeholder="Search Blog" aria-label="Username" aria-describedby="basic-addon1">
+        </div>
+     </form>
+     </div>
+    <div class="container mt-3 ">
+      <div class="row row-cols-4">
+        <% Blogs.forEach(blog => { %>
+          <div class="col">
+            <div class="card mt-3" style="width: 18rem;">
+            <img src="/<%= blog.coverImage %>" class="card-img-top" alt="..." height="200px">
+            <div class="card-body">
+            <h5 class="card-title"><%= blog.title %></h5>
+            <a href="/blog/<%= blog._id %>" class="btn btn-primary">View</a>
+            <a href="/blog/delete/<%= blog._id %>" class="btn btn-danger">Delete</a>
+            <a href="/blog/update/<%= blog._id %>" class="btn btn-success">Update</a>
+            
+            </div>
+          </div>
+          </div>
+      <% }) %>
+      </div>
+    </div>
+   <%- include('./partials/script.ejs') %>
+</body>
+</html>
