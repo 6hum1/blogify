@@ -15,7 +15,15 @@ const {checkForAuthenticationCookie} = require('./middlewares/authentication')
 
 const PORT = process.env.PORT || 8000;
 
-mongoose.connect(process.env.MONGO_URL).then((s)=> console.log("mongodb connected")).catch((err)=> console.log("error connecting mongodb",err));
+console.log(process.env.MONGO_URL);
+
+mongoose.connect(process.env.MONGO_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => console.log("MongoDB Connected"))
+.catch((err) => console.error("MongoDB connection error:", err));
+
 
 app.set("view engine","ejs");
 app.set('views',path.resolve('./views'));
